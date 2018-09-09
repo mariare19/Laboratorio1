@@ -2,11 +2,78 @@
     <h1>Listado de Recetas Foodie&nbsp;
         <i class="glyphicon glyphicon-heart-empty" style="color: pink; font-size: 25px;"></i>
         <span style="font-size: 25px;"></span>
-        <button class="btn btn-primary btn-lg">Crear Nueva Receta</button>
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#nuevaReceta">Crear Nueva Receta</button>
     </h1>
 </div>
 <div class="container">
     <div class="row" id="listadoRecetas">
-        
+    </div>
+</div>
+
+<!-- Modal Nueva-->
+<div class="modal fade" id="nuevaReceta" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2 class="modal-title">Nueva Receta</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Titulo:</label>
+                        <input type="text" name="Titulo" id="Titulo" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripcion:</label>
+                        <input type="textarea" name="Descripcion" id="Descripcion" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Ingredientes:</label>
+                        <input type="text" name="Ingredientes" id="Ingredientes" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar Receta</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar-->
+<div class="modal fade" id="editarReceta" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2 class="modal-title">Editar Receta</h2>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Titulo:</label>
+                        <input type="text" name="Titulo" id="Titulo" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripcion:</label>
+                        <input type="textarea" name="Descripcion" id="Descripcion" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Ingredientes:</label>
+                        <input type="text" name="Ingredientes" id="Ingredientes" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                    <i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar Receta</button>
+            </div>
+        </div>
     </div>
 </div>

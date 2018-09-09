@@ -18,6 +18,7 @@ document.getElementById('navrecetas').addEventListener('click', function (event)
         removeActive();
         event.target.parentElement.classList.add('active');
         llenarListado();
+        agregarListener();
     });
 });
 
@@ -36,6 +37,7 @@ function removeActive() {
 
 var arrayRecetas = [
     {
+        id: '001',
         titulo: 'Brownies de Nutella',
         descripcion: 'Este brownie de Nutella es facilísimo de preparar, con muy pocos ingredientes, aunque puedes personalizarlo a tu gusto.',
         ingredientes: [
@@ -47,6 +49,7 @@ var arrayRecetas = [
         urlimg: "assets/images/brownies.jpg"
     },
     {
+        id: '002',
         titulo: 'Crema de Queso y Cereza',
         descripcion: 'Bonitas capas de migas de galleta Graham, sabroso relleno y relleno de fruta hacen que estos postres de queso crema sean un destacado!',
         ingredientes: [
@@ -58,6 +61,7 @@ var arrayRecetas = [
         urlimg: "assets/images/fresas.jpg"
     },
     {
+        id: '003',
         titulo: 'Tim Tam Shooters',
         descripcion: '¡Sorprenda a sus invitados con estos magníficos tiradores de postres Tim Tam, hechos con espuma de chocolate y crema batida de Tim Tam!',
         ingredientes: [
@@ -66,14 +70,34 @@ var arrayRecetas = [
             'Harina',
             'Leche Condensada'
         ],
-        urlimg: "assets/images/chocolate1.jpg"
+        urlimg: "assets/images/chocolate2.jpg"
     }
 ]
 
 function llenarListado() {
     arrayRecetas.forEach(receta => {
         var colmd4 = document.createElement("DIV");
-        colmd4.classList.add('col-md-4');
+        colmd4.classList.add('col-md-4','col-sm-6');
+
+        var div = document.createElement("DIV");
+        div.classList.add('text-right');
+        div.id = receta.id;
+
+        var btnEditar = document.createElement('BUTTON');
+        btnEditar.classList.add('btn', 'btn-default', 'btnEditar');
+        var editar = document.createTextNode('Editar');
+        btnEditar.setAttribute('data-toggle', 'modal');
+        btnEditar.setAttribute('data-target', '#editarReceta');
+        btnEditar.appendChild(editar);
+
+        var btnEliminar = document.createElement('BUTTON');
+        btnEliminar.classList.add('btn', 'btn-default', 'btnEliminar');
+        var eliminar = document.createTextNode('Eliminar');
+        btnEliminar.appendChild(eliminar);
+
+        div.appendChild(btnEditar);
+        div.appendChild(btnEliminar);
+
         var img = document.createElement("IMG");
         img.classList.add('img-circle');
         img.src = receta.urlimg;
@@ -101,11 +125,29 @@ function llenarListado() {
             li.classList.add('list-group-item');
             ul.appendChild(li);
         });
+        var hr = document.createElement("HR");
+        colmd4.appendChild(div);
         colmd4.appendChild(img);
         colmd4.appendChild(h2);
         colmd4.appendChild(p);
         colmd4.appendChild(h4);
         colmd4.appendChild(ul);
+        colmd4.appendChild(hr);
         document.querySelector("#listadoRecetas").appendChild(colmd4);
     });
+}
+
+function agregarListener() {
+    var existe = document.querySelectorAll('.btnEditar');
+    existe.forEach(elemento => {
+        elemento.addEventListener('click', function(event) {
+            for (let i = 0; i < arrayRecetas.length; i++) {
+                const element = arrayRecetas[i];
+                if (element.id == event.target.parentElement.id) {
+                    element.titulo = 'PRUEBA'
+                    break;
+                }
+            }
+        })
+    })
 }
