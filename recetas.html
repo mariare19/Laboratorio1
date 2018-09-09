@@ -2,7 +2,7 @@
     <h1>Listado de Recetas Foodie&nbsp;
         <i class="glyphicon glyphicon-heart-empty" style="color: pink; font-size: 25px;"></i>
         <span style="font-size: 25px;"></span>
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#nuevaReceta">Crear Nueva Receta</button>
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#nuevaReceta" id="btnNuevaReceta">Crear Nueva Receta</button>
     </h1>
 </div>
 <div class="container">
@@ -21,7 +21,7 @@
                 <h2 class="modal-title">Nueva Receta</h2>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="formNueva">
                     <div class="form-group">
                         <label>Titulo:</label>
                         <input type="text" name="Titulo" id="Titulo" class="form-control">
@@ -37,7 +37,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                <button type="submit" class="btn btn-primary" data-dismiss="modal" id="guardarRecetaNueva">
                     <i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar Receta</button>
             </div>
         </div>
@@ -55,7 +55,11 @@
                 <h2 class="modal-title">Editar Receta</h2>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="formEditar">
+                    <div class="form-group">
+                        <label>Id:</label>
+                        <input type="text" name="Titulo" id="EdId" class="form-control">
+                    </div>
                     <div class="form-group">
                         <label>Titulo:</label>
                         <input type="text" name="Titulo" id="EdTitulo" class="form-control">
@@ -71,7 +75,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnGuardarEdicion">
                     <i class="glyphicon glyphicon-floppy-disk"></i>&nbsp;Guardar Receta</button>
             </div>
         </div>

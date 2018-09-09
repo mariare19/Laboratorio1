@@ -18,7 +18,6 @@ document.getElementById('navrecetas').addEventListener('click', function (event)
         removeActive();
         event.target.parentElement.classList.add('active');
         llenarListado();
-        agregarListener();
     });
 });
 
@@ -37,7 +36,7 @@ function removeActive() {
 
 var arrayRecetas = [
     {
-        id: '001',
+        id: '1',
         titulo: 'Brownies de Nutella',
         descripcion: 'Este brownie de Nutella es facilísimo de preparar, con muy pocos ingredientes, aunque puedes personalizarlo a tu gusto.',
         ingredientes: [
@@ -49,7 +48,7 @@ var arrayRecetas = [
         urlimg: "assets/images/brownies.jpg"
     },
     {
-        id: '002',
+        id: '2',
         titulo: 'Crema de Queso y Cereza',
         descripcion: 'Bonitas capas de migas de galleta Graham, sabroso relleno y relleno de fruta hacen que estos postres de queso crema sean un destacado!',
         ingredientes: [
@@ -61,7 +60,7 @@ var arrayRecetas = [
         urlimg: "assets/images/fresas.jpg"
     },
     {
-        id: '003',
+        id: '3',
         titulo: 'Tim Tam Shooters',
         descripcion: '¡Sorprenda a sus invitados con estos magníficos tiradores de postres Tim Tam, hechos con espuma de chocolate y crema batida de Tim Tam!',
         ingredientes: [
@@ -77,7 +76,7 @@ var arrayRecetas = [
 function llenarListado() {
     arrayRecetas.forEach(receta => {
         var colmd4 = document.createElement("DIV");
-        colmd4.classList.add('col-md-4','col-sm-6');
+        colmd4.classList.add('col-md-4', 'col-sm-6', 'col-listado');
 
         var div = document.createElement("DIV");
         div.classList.add('text-right');
@@ -135,24 +134,89 @@ function llenarListado() {
         colmd4.appendChild(hr);
         document.querySelector("#listadoRecetas").appendChild(colmd4);
     });
+    agregarListener();
 }
 
 function agregarListener() {
-    var existe = document.querySelectorAll('.btnEditar');
-    existe.forEach(elemento => {
-        elemento.addEventListener('click', function(event) {
+    document.querySelectorAll('.btnEditar').forEach(elemento => {
+        elemento.addEventListener('click', function (event) {
             for (let i = 0; i < arrayRecetas.length; i++) {
                 const element = arrayRecetas[i];
                 if (element.id == event.target.parentElement.id) {
+                    document.querySelector('#EdId').value = element.id;
                     document.querySelector('#EdTitulo').value = element.titulo;
                     document.querySelector('#EdDescripcion').value = element.descripcion;
                     var ingredientes = '';
                     element.ingredientes.forEach(ingrediente => {
-                        ingredientes = ingredientes  + "," + ingrediente;
+                        ingredientes += ingrediente + ',';
                     })
+                    ingredientes = ingredientes.substring(0, ingredientes.length - 1);
                     document.querySelector('#EdIngredientes').value = ingredientes;
                 }
             }
         })
     })
+
+    document.querySelectorAll('.btnEliminar').forEach(elemento => {
+        elemento.addEventListener('click', function (event) {
+            for (let i = 0; i < arrayRecetas.length; i++) {
+                const element = arrayRecetas[i];
+                if (element.id == event.target.parentElement.id) {
+                    arrayRecetas.splice(i, 1);
+                    actualizarListado();
+                }
+            }
+        })
+    })
+
+    
+    document.getElementById('btnNuevaReceta').addEventListener('click',function(event) {
+        var inputs = document.querySelector('#formNueva');
+        inputs[0].value = '';
+        inputs[1].value = '';
+        inputs[2].value = '';
+    })
+
+    document.querySelector('#guardarRecetaNueva').addEventListener('click', function () {
+        var inputs = document.querySelector('#formNueva');
+        var receta = [];
+        receta['id'] = arrayRecetas.length + 1;
+        receta['titulo'] = inputs[0].value;
+        receta['descripcion'] = inputs[1].value;
+        var ingredientes = [];
+        inputs[2].value.split(',').forEach(ingrediente => {
+            ingredientes.push(ingrediente);
+        })
+        receta['ingredientes'] = ingredientes;
+        receta['urlimg'] = 'assets/images/default.jpg'
+        arrayRecetas.push(receta);
+        actualizarListado();
+    });
+
+    document.querySelector('#btnGuardarEdicion').addEventListener('click', function () {
+        var inputs = document.querySelector('#formEditar');
+        for (let i = 0; i < arrayRecetas.length; i++) {
+            const element = arrayRecetas[i];
+            if (element.id == inputs[0].value) {
+                element.id = inputs[0].value;
+                element.titulo = inputs[1].value;
+                element.descripcion = inputs[2].value;
+                var ingredientes = [];
+                inputs[3].value.split(',').forEach(ingrediente => {
+                    ingredientes.push(ingrediente);
+                })
+                element.ingredientes = ingredientes;
+                break;
+            }
+        }
+        actualizarListado();
+    })
+}
+
+function actualizarListado() {
+    var elemento = document.querySelectorAll(".col-listado");
+    elemento.forEach(el => {
+        el.parentNode.removeChild(el);
+    })
+    llenarListado();
 }
