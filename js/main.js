@@ -18,6 +18,7 @@ document.getElementById('navrecetas').addEventListener('click', function (event)
         removeActive();
         event.target.parentElement.classList.add('active');
         llenarListado();
+        agregarListener();
     });
 });
 
@@ -134,7 +135,7 @@ function llenarListado() {
         colmd4.appendChild(hr);
         document.querySelector("#listadoRecetas").appendChild(colmd4);
     });
-    agregarListener();
+    //agregarListener();
 }
 
 function agregarListener() {
@@ -177,21 +178,21 @@ function agregarListener() {
         inputs[2].value = '';
     })
 
-    document.querySelector('#guardarRecetaNueva').addEventListener('click', function () {
-        var inputs = document.querySelector('#formNueva');
-        var receta = [];
-        receta['id'] = arrayRecetas.length + 1;
-        receta['titulo'] = inputs[0].value;
-        receta['descripcion'] = inputs[1].value;
-        var ingredientes = [];
-        inputs[2].value.split(',').forEach(ingrediente => {
-            ingredientes.push(ingrediente);
-        })
-        receta['ingredientes'] = ingredientes;
-        receta['urlimg'] = 'assets/images/default.jpg'
-        arrayRecetas.push(receta);
-        actualizarListado();
-    });
+    // document.getElementById('guardarRecetaNueva').addEventListener('click', function () {
+    //     var inputs = document.querySelector('#formNueva');
+    //     var receta = [];
+    //     receta['id'] = arrayRecetas.length + 1;
+    //     receta['titulo'] = inputs[0].value;
+    //     receta['descripcion'] = inputs[1].value;
+    //     var ingredientes = [];
+    //     inputs[2].value.split(',').forEach(ingrediente => {
+    //         ingredientes.push(ingrediente);
+    //     })
+    //     receta['ingredientes'] = ingredientes;
+    //     receta['urlimg'] = 'assets/images/default.jpg'
+    //     arrayRecetas.push(receta);
+    //     actualizarListado();
+    // });
 
     document.querySelector('#btnGuardarEdicion').addEventListener('click', function () {
         var inputs = document.querySelector('#formEditar');
@@ -219,4 +220,5 @@ function actualizarListado() {
         el.parentNode.removeChild(el);
     })
     llenarListado();
+    agregarListener();
 }

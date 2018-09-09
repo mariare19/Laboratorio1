@@ -27,18 +27,18 @@
 }
 
 .img-small {
-    height: 305px;
-    width: 285px;
+  /* height: 305px; */
+  width: 100%;
 }
 
 .img-medium {
-  height: 305px;
-  width: 565px;
+  /* height: 305px; */
+  width: 100%;
 }
 
 .img-large {
-  height: 305px;
-  width: 1140px;
+  /* height: 305px; */
+  width: 100%;
 }
 
 html {
