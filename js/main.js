@@ -144,8 +144,13 @@ function agregarListener() {
             for (let i = 0; i < arrayRecetas.length; i++) {
                 const element = arrayRecetas[i];
                 if (element.id == event.target.parentElement.id) {
-                    element.titulo = 'PRUEBA'
-                    break;
+                    document.querySelector('#EdTitulo').value = element.titulo;
+                    document.querySelector('#EdDescripcion').value = element.descripcion;
+                    var ingredientes = '';
+                    element.ingredientes.forEach(ingrediente => {
+                        ingredientes = ingredientes  + "," + ingrediente;
+                    })
+                    document.querySelector('#EdIngredientes').value = ingredientes;
                 }
             }
         })
