@@ -1,3 +1,3 @@
 # Laboratorio1
 
-Utilice Live Server de VS Code para hacer el host de mi pagina.
+Utilice Live Server de VS Code para levantar el servidor local para mi pagina.
